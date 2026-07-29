@@ -3,404 +3,713 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>丁宇轩 · 个人简历</title>
+    <title>丁宇轩 | 个人主页</title>
     <style>
+        /* ============================================
+           配色与基础变量 —— 想换配色改这里就行
+           ============================================ */
         :root {
-            --bg: #f8f9fa;
-            --card: #ffffff;
-            --text: #2d3436;
-            --text-light: #636e72;
-            --accent: #2d3436;
-            --border: #e9ecef;
-            --tag-bg: #f1f3f5;
-            --link: #0984e3;
+            --bg: #0f1117;
+            --surface: #1a1d25;
+            --border: #2a2d35;
+            --text: #e4e6eb;
+            --text-dim: #9ca3af;
+            --accent: #60a5fa;
+            --tag-bg: #1e2430;
+            --gold: #f59e0b;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.7;
+            line-height: 1.75;
             -webkit-font-smoothing: antialiased;
         }
-        a { color: var(--link); text-decoration: none; }
-        a:hover { text-decoration: underline; }
 
-        .container {
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 40px 24px 80px;
+        /* ============================================
+           顶部导航栏
+           ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(15,17,23,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
         }
-
-        /* Header */
-        .header {
-            background: var(--card);
-            border-radius: 16px;
-            padding: 40px 48px;
-            margin-bottom: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        .nav-inner {
+            max-width: 960px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 24px;
-        }
-        .header-left h1 {
-            font-size: 36px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 6px;
-        }
-        .header-left .subtitle {
-            font-size: 15px;
-            color: var(--text-light);
-            font-weight: 400;
-        }
-        .header-right {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            font-size: 14px;
-            color: var(--text-light);
-        }
-        .header-right .contact-item {
-            display: flex;
             align-items: center;
-            gap: 6px;
-            white-space: nowrap;
+            padding: 0 24px;
+            height: 56px;
         }
-        .header-right .contact-item .icon {
-            width: 18px;
-            text-align: center;
-            opacity: 0.6;
-        }
-
-        /* Section */
-        .section {
-            background: var(--card);
-            border-radius: 16px;
-            padding: 36px 48px;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        .section-title {
+        .nav-logo {
             font-size: 18px;
             font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 24px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: var(--text);
+            text-decoration: none;
         }
-        .section-title .title-icon {
-            font-size: 20px;
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text); }
+
+        /* 手机端导航用汉堡菜单 */
+        @media (max-width: 700px) {
+            .nav-links { gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
+            .nav-links a { font-size: 13px; }
         }
 
-        /* Education & Experience items */
-        .item {
-            margin-bottom: 24px;
-            padding-left: 20px;
-            border-left: 2px solid var(--border);
+        /* ============================================
+           区块通用样式
+           ============================================ */
+        .section {
+            width: 85%;
+            margin: 0 auto;
+            padding: 100px 0 60px;
         }
-        .item:last-child { margin-bottom: 0; }
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 8px;
+        .section-label {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        /* ============================================
+           Hero / About 区块
+           ============================================ */
+        .hero {
+            width: 85%;
+            margin: 0 auto;
+            padding: 160px 24px 40px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -1px;
             margin-bottom: 4px;
         }
-        .item-header h3 {
+        .hero .headline {
+            font-size: 18px;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+        }
+        .hero .intro {
             font-size: 16px;
-            font-weight: 600;
+            color: var(--text-dim);
+            max-width: 650px;
+            line-height: 1.9;
         }
-        .item-header .date {
-            font-size: 13px;
-            color: var(--text-light);
-            white-space: nowrap;
+
+        /* ============================================
+           大气卡片 —— 用于教育、实习（单列全宽）
+           ============================================ */
+        .exp-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
-        .item .org {
-            font-size: 14px;
-            color: var(--text-light);
+        .exp-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 36px 40px;
+            transition: border-color 0.3s;
+        }
+        .exp-card:hover {
+            border-color: #4a5568;
+        }
+        .exp-card .time-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
             margin-bottom: 6px;
         }
-        .item ul {
+        .exp-card .time-header h3 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .exp-card .time-header .period {
+            font-size: 14px;
+            color: var(--accent);
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        .exp-card .org {
+            font-size: 16px;
+            color: var(--text-dim);
+            margin-bottom: 14px;
+        }
+        .exp-card .sub-text {
+            font-size: 15px;
+            color: #c0c4cc;
+            line-height: 1.9;
+        }
+        .exp-card ul {
             list-style: none;
             padding: 0;
         }
-        .item ul li {
-            font-size: 14px;
-            color: #4a4a4a;
-            padding: 3px 0;
-            padding-left: 16px;
+        .exp-card ul li {
+            font-size: 15px;
+            color: #c0c4cc;
+            padding: 5px 0;
+            padding-left: 20px;
             position: relative;
+            line-height: 1.7;
         }
-        .item ul li::before {
-            content: "–";
+        .exp-card ul li::before {
+            content: "▸";
             position: absolute;
             left: 0;
-            color: #b2bec3;
-        }
-
-        /* Courses / Tags */
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px;
-        }
-        .tag {
-            font-size: 12px;
-            background: var(--tag-bg);
-            color: var(--text-light);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: 500;
-        }
-
-        /* Honors */
-        .honor-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        .honor-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 10px 14px;
-            background: var(--tag-bg);
-            border-radius: 10px;
+            color: var(--accent);
             font-size: 14px;
         }
-        .honor-item .medal {
-            font-size: 20px;
-            flex-shrink: 0;
+
+        /* 深绿色超链接 */
+        .link-green {
+            color: #2f9e44;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(47,158,68,0.3);
+            transition: border-color 0.2s;
+        }
+        .link-green:hover {
+            border-bottom-color: #2f9e44;
         }
 
-        /* Skills */
-        .skills-grid {
+        /* ============================================
+           卡片列表 —— 用于荣誉、活动、技能
+           ============================================ */
+        .card-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
         }
-        .skill-group h4 {
+        @media (max-width: 600px) {
+            .card-grid { grid-template-columns: 1fr; }
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 22px;
+        }
+        .card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .card .card-sub {
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+        .card p {
+            font-size: 14px;
+            color: #c0c4cc;
+            margin-top: 6px;
+        }
+
+        /* ============================================
+           项目经验专用卡片 —— 全宽、大块、宽松
+           ============================================ */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px 44px;
+            transition: border-color 0.3s;
+        }
+        .project-card:hover {
+            border-color: #4a5568;
+        }
+        .project-card h4 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .project-card .project-period {
+            font-size: 14px;
+            color: var(--accent);
+            margin-bottom: 24px;
+            display: block;
+        }
+        .project-card .project-body {
+            font-size: 15px;
+            color: #c0c4cc;
+            line-height: 2;
+        }
+        .project-card .project-body p {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .project-card .project-body p::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 13px;
+        }
+        .project-badge {
+            display: inline-block;
+            background: rgba(245,158,11,0.12);
+            color: var(--gold);
+            border: 1px solid rgba(245,158,11,0.25);
+            border-radius: 8px;
+            padding: 6px 16px;
             font-size: 14px;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-top: 20px;
         }
-        .skill-group p {
+
+        /* 荣誉专用 */
+        .honor-medal {
+            font-size: 24px;
+            margin-right: 6px;
+        }
+
+        /* ============================================
+           技能标签
+           ============================================ */
+        .skills-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill-tag {
+            background: var(--tag-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 16px;
             font-size: 14px;
-            color: #4a4a4a;
+            color: #c0c4cc;
+        }
+        /* AI Agent 高亮标签 */
+        .skill-highlight {
+            background: rgba(96,165,250,0.1);
+            border: 1px solid rgba(96,165,250,0.35);
+            color: var(--accent);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .skill-note {
+            font-weight: 400;
+            font-size: 12px;
+            color: var(--text-dim);
+            border-left: 1px solid rgba(96,165,250,0.3);
+            padding-left: 8px;
         }
 
-        /* Extracurricular */
-        .extra-row {
+        /* ============================================
+           联系方式
+           ============================================ */
+        .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        @media (max-width: 600px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+        .contact-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+        .contact-card .c-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .contact-card .c-label {
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .contact-card .c-value {
+            font-size: 15px;
+            font-weight: 600;
         }
 
-        /* Footer */
+        /* ============================================
+           滚动渐入动画
+           区块从下方 40px 淡入滑出，卡片依次推迟，层层推出
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.16, 0.29, 0, 0.99),
+                        transform 0.7s cubic-bezier(0.16, 0.29, 0, 0.99);
+        }
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           页脚
+           ============================================ */
         .footer {
             text-align: center;
-            padding: 24px;
+            padding: 48px 24px;
             font-size: 13px;
-            color: #b2bec3;
-        }
-
-        /* Print */
-        @media print {
-            body { background: #fff; }
-            .container { padding: 0; max-width: 100%; }
-            .section, .header { box-shadow: none; border-radius: 0; padding: 20px 0; }
-            .section { margin-bottom: 0; }
-        }
-
-        /* Mobile */
-        @media (max-width: 640px) {
-            .container { padding: 16px; }
-            .header, .section { padding: 24px 20px; }
-            .header-left h1 { font-size: 28px; }
-            .honor-list, .skills-grid, .extra-row { grid-template-columns: 1fr; }
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
         }
     </style>
 </head>
 <body>
-<div class="container">
 
-    <!-- Header -->
-    <div class="header">
-        <div class="header-left">
-            <h1>丁宇轩</h1>
-            <p class="subtitle">个人简历 · Resume</p>
-        </div>
-        <div class="header-right">
-            <span class="contact-item"><span class="icon">📱</span> +86 13077992810</span>
-            <span class="contact-item"><span class="icon">📧</span> 2287872175@qq.com</span>
-            <span class="contact-item"><span class="icon">💬</span> dyx2287872175</span>
-        </div>
+<!-- ============================================
+     顶部导航栏
+     如果想增减导航项，在这里加/删 <li><a href="#xxx">
+     ============================================ -->
+<nav class="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">丁宇轩</a>
+        <ul class="nav-links">
+            <li><a href="#about">关于</a></li>
+            <li><a href="#education">教育</a></li>
+            <li><a href="#internship">实习</a></li>
+            <!-- 有新项目后，把下面这行注释取消 -->
+            <!-- <li><a href="#projects">项目</a></li> -->
+            <li><a href="#activities">活动</a></li>
+            <li><a href="#skills">技能</a></li>
+            <li><a href="#contact">联系</a></li>
+        </ul>
     </div>
+</nav>
 
-    <!-- 教育背景 -->
-    <div class="section">
-        <div class="section-title">
-            <span class="title-icon">🎓</span> 教育背景 / Education
-        </div>
-        <div class="item">
-            <div class="item-header">
+<!-- ============================================
+     HERO — 关于我
+     放姓名 + 一句话简介 + 一段自我介绍
+     ============================================ -->
+<section id="about">
+    <div class="hero">
+        <h1>丁宇轩</h1>
+        <p class="headline">数学经济 + 技术实践 · 探索数据与金融的交汇处</p>
+        <p class="intro">
+            UCL 数学与经济专业在读。对数据分析、金融科技和 AI 应用充满兴趣。
+            曾在银行公司部及交通科技企业实习，具备 Python 编程、数据处理和团队协作能力。
+            喜欢将技术思维融入实际问题——从数学建模到商业策略。
+        </p>
+    </div>
+</section>
+
+<!-- ============================================
+     教育背景
+     时间线样式。每条一个 timeline-item
+     想加新的教育经历？复制一整个 <div class="timeline-item"> 即可
+     ============================================ -->
+<section id="education" class="section">
+    <p class="section-label">Education</p>
+    <h2 class="section-title">教育背景</h2>
+
+    <div class="exp-grid">
+        <div class="exp-card">
+            <div class="time-header">
                 <h3>伦敦大学学院 (UCL)</h3>
-                <span class="date">2024/09 – 2027/07</span>
+                <span class="period">2024/09 – 2027/07</span>
             </div>
-            <p class="org">本科 · 数学与经济专业</p>
-            <p style="font-size:13px;color:var(--text-light);margin-top:4px;">相关课程：</p>
-            <div class="tags">
-                <span class="tag">数学分析</span>
-                <span class="tag">数学方法</span>
-                <span class="tag">代数</span>
-                <span class="tag">编程方法</span>
-                <span class="tag">统计与概率</span>
-                <span class="tag">经济学</span>
-            </div>
+            <p class="org">本科 · <a class="link-green" href="https://www.ucl.ac.uk/study/prospective-students/undergraduate/courses/mathematics-economics-bsc" target="_blank" rel="noopener noreferrer">数学与经济专业</a></p>
+            <p class="sub-text">相关课程：数学分析、数学方法、代数、编程方法、统计与概率、经济学</p>
         </div>
-        <div class="item">
-            <div class="item-header">
+
+        <div class="exp-card">
+            <div class="time-header">
                 <h3>南昌启华双语学校</h3>
-                <span class="date">2021/09 – 2024/07</span>
+                <span class="period">2021/09 – 2024/07</span>
             </div>
-            <p style="font-size:13px;color:var(--text-light);margin-bottom:4px;">A-Level 成绩：数学 A · 高等数学 A · 化学 A · 物理 B · 中文 A*</p>
-            <p style="font-size:13px;color:var(--text-light);">IGCSE 成绩：数学 A · 高等数学 A · 化学 A · 物理 A · 中文 A*</p>
+            <p class="sub-text">
+                A-Level：数学 A* · 高等数学 A* · 化学 A · 物理 B · 中文 A*<br>
+                IGCSE：数学 A* · 高等数学 A* · 化学 A* · 物理 A* · 中文 A*
+            </p>
         </div>
     </div>
+</section>
 
-    <!-- 荣誉与奖项 -->
-    <div class="section">
-        <div class="section-title">
-            <span class="title-icon">🏆</span> 荣誉与奖项 / Honors &amp; Awards
+<!-- ============================================
+     实习经历
+     时间线样式。每条一个 timeline-item
+     新实习做完后，在下面加一个新的 <div class="timeline-item"> 即可
+     ============================================ -->
+<section id="internship" class="section">
+    <p class="section-label">Internship</p>
+    <h2 class="section-title">实习经历</h2>
+
+    <div class="exp-grid">
+
+    <!--
+      ===== 新实习加在这里！ =====
+      复制下面的模板，改掉标题、日期、描述即可：
+
+      <div class="exp-card">
+          <div class="time-header">
+              <h3>公司名称</h3>
+              <span class="period">起始/月 – 结束/月</span>
+          </div>
+          <p class="org">岗位名称</p>
+          <ul>
+              <li>做了什么</li>
+              <li>又做了什么</li>
+          </ul>
+      </div>
+    -->
+
+    <div class="exp-card">
+        <div class="time-header">
+            <h3>因诺（上海）资产管理有限公司</h3>
+            <span class="period">2026/06 – 2026/08</span>
         </div>
-        <div class="honor-list">
-            <div class="honor-item">
-                <span class="medal">🥇</span>
-                <div>
-                    <strong>UKMT IMC 满分金奖</strong>
-                    <p style="font-size:12px;color:var(--text-light);">世界最佳 · 2021</p>
-                </div>
-            </div>
-            <div class="honor-item">
-                <span class="medal">🥇</span>
-                <div>
-                    <strong>UKMT SMC 金奖</strong>
-                    <p style="font-size:12px;color:var(--text-light);">2022</p>
-                </div>
-            </div>
-            <div class="honor-item">
-                <span class="medal">🥈</span>
-                <div>
-                    <strong>JCCO 银奖</strong>
-                    <p style="font-size:12px;color:var(--text-light);">学校最佳 · 2023</p>
-                </div>
-            </div>
-            <div class="honor-item">
-                <span class="medal">🥈</span>
-                <div>
-                    <strong>SPC 物理银奖</strong>
-                    <p style="font-size:12px;color:var(--text-light);">Senior Physics Challenge</p>
-                </div>
-            </div>
-            <div class="honor-item" style="grid-column: 1 / -1;">
-                <span class="medal">📚</span>
-                <div>
-                    <strong>高中三年奖学金：总额超 13 万元</strong>
-                </div>
-            </div>
-        </div>
+        <p class="org">IT部 · 量化开发岗</p>
+        <ul>
+            <li>（实习内容待补充）</li>
+        </ul>
     </div>
 
-    <!-- 实习经历 -->
-    <div class="section">
-        <div class="section-title">
-            <span class="title-icon">💼</span> 实习经历 / Internship
+    <div class="exp-card">
+        <div class="time-header">
+            <h3>Bank of China (UK) Ltd. 中国银行英国有限公司</h3>
+            <span class="period">2025/08 – 2025/09</span>
         </div>
-        <div class="item">
-            <div class="item-header">
-                <h3>Bank of China (UK) Ltd. 中国银行英国有限公司</h3>
-                <span class="date">2025/08 – 2025/09</span>
-            </div>
-            <p class="org">公司银行部实习生</p>
-            <ul>
-                <li>参与公司金融与投资银行业务相关工作</li>
-                <li>使用 Excel、Word 自动化处理财务报告，完成数据分析工作</li>
-                <li>协助现金流规划、贸易融资业务，配合完成年终绩效评估数据分析</li>
-            </ul>
-        </div>
-        <div class="item">
-            <div class="item-header">
-                <h3>江西慧通科技发展有限公司</h3>
-                <span class="date">2022/07 – 2022/08</span>
-            </div>
-            <p class="org">运营部实习生</p>
-            <ul>
-                <li>参与高速公路枢纽设计项目，使用 Origin 完成道路建模与可视化绘图</li>
-                <li>基于数据分析、概率模型优化交通流量，提升通行效率、降低拥堵与事故风险</li>
-                <li>依托企业自有大数据平台开展桥梁健康监测，分析监测数据评估桥梁结构安全</li>
-            </ul>
-        </div>
+        <p class="org">公司银行部实习生</p>
+        <ul>
+            <li>参与公司金融与投资银行业务相关工作</li>
+            <li>使用 Excel、Word 自动化处理财务报告，完成数据分析工作</li>
+            <li>协助现金流规划、贸易融资业务，配合完成年终绩效评估数据分析</li>
+        </ul>
     </div>
 
-    <!-- 课外活动 -->
-    <div class="section">
-        <div class="section-title">
-            <span class="title-icon">🌟</span> 课外活动 / Extra-Curricular
+    <div class="exp-card">
+        <div class="time-header">
+            <h3>江西慧通科技发展有限公司</h3>
+            <span class="period">2022/07 – 2022/08</span>
         </div>
-        <div class="extra-row">
-            <div class="item">
-                <div class="item-header">
-                    <h3>足球俱乐部</h3>
-                    <span class="date">2021/09 – 2024/08</span>
-                </div>
-                <p class="org">创始人 / 队长</p>
-                <ul>
-                    <li>创办校园足球社团，统筹管理 50 余名社团成员</li>
-                </ul>
+        <p class="org">运营部实习生</p>
+        <ul>
+            <li>参与高速公路枢纽设计项目，使用 Origin 完成道路建模与可视化绘图</li>
+            <li>基于数据分析、概率模型优化交通流量，提升通行效率、降低拥堵与事故风险</li>
+            <li>依托企业自有大数据平台开展桥梁健康监测，分析监测数据评估桥梁结构安全</li>
+        </ul>
+    </div>
+    </div>
+</section>
+
+<!-- ============================================
+     项目经验
+     ============================================ -->
+
+<section id="projects" class="section">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">项目经验</h2>
+
+    <div class="project-grid">
+        <div class="project-card">
+            <h4>Balance Sheet Management in Banking</h4>
+            <span class="project-period">2026/05 – 2026/06</span>
+            <div class="project-body">
+                <p>小组受聘担任小型银行外部量化咨询顾问：对虚拟银行资产负债表进行全面解析；</p>
+                <p>搭建量化模型，开展基准情景与极端情景压力测试，测算核心风险指标，识别流动性、信用等潜在风险敞口；</p>
+                <p>基于基准情景与极端压力情景，预测未来 1 年期资产负债表走势</p>
+                <p>完成半小时的技术专场汇报：面向技术人员，阐述建模思路、模型架构与参数假设；</p>
+                <p>专场汇报：面向银行董事会，汇总量化建模结论、识别机构风险、提供经营决策建议。</p>
+                <p>项目模型设计富有创新性，成果超出课程预期；擅长将复杂数理分析转化为业务端可落地决策建议，获得导师高度评价</p>
             </div>
-            <div class="item">
-                <div class="item-header">
-                    <h3>ASDAN 商业模拟挑战赛</h3>
-                    <span class="date">2021/11 – 2021/12</span>
-                </div>
-                <p class="org">团队负责人 / 精算师</p>
-                <ul>
-                    <li>负责团队精算计算、经营策略制定，统筹团队协作</li>
-                    <li>最终取得全国 Top 4 成绩</li>
-                </ul>
-            </div>
+            <span class="project-badge">🥇 · SOLID FIRST</span>
         </div>
     </div>
+</section>
 
-    <!-- 其他技能 -->
-    <div class="section">
-        <div class="section-title">
-            <span class="title-icon">🛠️</span> 其他技能 / Skills
+
+<!-- ============================================
+     荣誉与奖项
+     ============================================ -->
+<section id="honors" class="section">
+    <p class="section-label">Honors</p>
+    <h2 class="section-title">荣誉与奖项</h2>
+
+    <div class="card-grid">
+        <div class="card">
+            <h4><span class="honor-medal">🥇</span> UKMT IMC 满分金奖</h4>
+            <p class="card-sub">2021 · 世界最佳 ·  Intermediate Mathematical Challenge</p>
         </div>
-        <div class="skills-grid">
-            <div class="skill-group">
-                <h4>技术工具</h4>
-                <p>熟练 Python 编程、Origin 数据绘图、Office 套件（Excel / Word / PowerPoint）</p>
-            </div>
-            <div class="skill-group">
-                <h4>语言能力</h4>
-                <p>英语 IELTS 6.5 · 中文（母语）</p>
-            </div>
+        <div class="card">
+            <h4><span class="honor-medal">🥇</span> UKMT SMC 金奖</h4>
+            <p class="card-sub">2022 · Senior Mathematical Challenge</p>
+        </div>
+        <div class="card">
+            <h4><span class="honor-medal">🥈</span> JCCO 化学奥赛银奖</h4>
+            <p class="card-sub">2023 · 学校最佳 ·  Junior Canadian Chemistry Olympiad</p>
+        </div>
+        <div class="card">
+            <h4><span class="honor-medal">🥈</span> SPC 物理挑战赛银奖</h4>
+            <p class="card-sub">Senior Physics Challenge</p>
+        </div>
+        <div class="card" style="grid-column: 1 / -1;">
+            <h4><span class="honor-medal">📚</span> 高中三年奖学金 · 总额超 13 万元</h4>
         </div>
     </div>
+</section>
 
-    <div class="footer">
-        © 2026 丁宇轩 · Powered by GitHub Pages
+<!-- ============================================
+     课外活动
+     ============================================ -->
+<section id="activities" class="section">
+    <p class="section-label">Activities</p>
+    <h2 class="section-title">课外活动</h2>
+
+    <div class="card-grid">
+        <div class="card">
+            <h4>⚽ 足球俱乐部</h4>
+            <p class="card-sub">创始人 / 队长 · 2021 – 2024</p>
+            <p>创办校园足球社团，统筹管理 50 余名社团成员。</p>
+        </div>
+        <div class="card">
+            <h4>📊 ASDAN 商业模拟挑战赛</h4>
+            <p class="card-sub">团队负责人 / 精算师 · 2021/11 – 2021/12</p>
+            <p>负责精算计算、经营策略制定，统筹团队协作，最终取得全国 Top 4。</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     技能
+     ============================================ -->
+<section id="skills" class="section">
+    <p class="section-label">Skills</p>
+    <h2 class="section-title">技能与语言</h2>
+
+    <h4 style="margin-bottom:12px;font-size:15px;color:var(--text-dim);">技术工具</h4>
+    <div class="skills-row" style="margin-bottom:28px;">
+        <span class="skill-tag skill-highlight">🤖 AI Agent (Claude Code)<span class="skill-note">熟练 Vibecoding · Claude Code 指令技巧</span></span>
+        <span class="skill-tag">Python 编程</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Markdown</span>
+        <span class="skill-tag">LaTeX</span>
+        <span class="skill-tag">Git / GitLab</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Jupyter Notebook</span>
+        <span class="skill-tag">Powershell / CMD</span>
+        <span class="skill-tag">Origin 数据绘图</span>
+        <span class="skill-tag">Excel</span>
+        <span class="skill-tag">语雀</span>
+        <span class="skill-tag">Word</span>
+        <span class="skill-tag">PowerPoint</span>
     </div>
 
+    <h4 style="margin-bottom:10px;font-size:14px;color:var(--text-dim);">语言能力</h4>
+    <div class="skills-row">
+        <span class="skill-tag">英语 · IELTS overall 6.5 / 6</span>
+        <span class="skill-tag">中文 · 母语</span>
+    </div>
+</section>
+
+<!-- ============================================
+     联系方式
+     ============================================ -->
+<section id="contact" class="section">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">联系方式</h2>
+
+    <div class="contact-grid">
+        <div class="contact-card">
+            <div class="c-icon">📱</div>
+            <div class="c-label">电话</div>
+            <div class="c-value">+86 13077992810</div>
+        </div>
+        <div class="contact-card">
+            <div class="c-icon">📧</div>
+            <div class="c-label">邮箱</div>
+            <div class="c-value">2287872175@qq.com</div>
+        </div>
+        <div class="contact-card">
+            <div class="c-icon">💬</div>
+            <div class="c-label">微信</div>
+            <div class="c-value">dyx2287872175</div>
+        </div>
+    </div>
+</section>
+
+<div class="footer">
+    © 2026 丁宇轩 · Powered by GitHub Pages
 </div>
+
+<script>
+/* ============================================
+   滚动渐入效果
+   Hero 直接显示。每个 section 内部卡片独立 stagger，
+   与卡片大小无关——每个 section 内第 1/2/3 张延迟一致
+   ============================================ */
+(function() {
+  // Hero 直接可见
+  const hero = document.querySelector('.hero');
+  if (hero) hero.style.opacity = '1';
+
+  // 按 section 分组，每组内卡片独立编号
+  document.querySelectorAll('.section').forEach(section => {
+    const cards = section.querySelectorAll('.exp-card, .project-card, .card, .contact-card');
+    cards.forEach((card, i) => {
+      card.classList.add('reveal');
+      card.style.transitionDelay = (0.12 * i) + 's';  // 组内递增：0s, 0.12s, 0.24s...
+    });
+  });
+
+  // 页脚单独
+  const footer = document.querySelector('.footer');
+  if (footer) footer.classList.add('reveal');
+
+  const allCards = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      allCards.forEach(el => observer.observe(el));
+    }, 250);
+  });
+})();
+</script>
+
 </body>
 </html>
