@@ -4,7 +4,7 @@
 
 ## 在线访问
 
-👉 **[https://lundundiyishenqing.github.io/resume](https://lundundiyishenqing.github.io/resume)**
+👉 **[https://lundundiyishenqing.github.io/my-cv/](https://lundundiyishenqing.github.io/my-cv/)**
 
 ## 本地预览
 
